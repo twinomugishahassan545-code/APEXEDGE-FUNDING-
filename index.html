@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEXEDGE FUNDING | Prop Trading</title>
 
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#080e19;color:white}
+:root{--green:#b7f36b;--panel:#111d30;--muted:#aab6c8}
+header{background:#0c1525;padding:20px;border-bottom:1px solid #26344a}
+nav{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.logo{font-size:22px;font-weight:bold;color:var(--green)}
+button,.btn{background:var(--green);color:#10170b;border:0;padding:13px 19px;border-radius:8px;font-weight:bold;cursor:pointer}
+button:hover,.btn:hover{opacity:.85}
+a{color:inherit;text-decoration:none}
+.container{max-width:1150px;margin:auto;padding:25px}
+.hero{padding:90px 20px;text-align:center;background:radial-gradient(circle at top,#203b4c,#080e19 65%)}
+.hero h1{font-size:55px;margin-bottom:20px}
+.hero h1 span{color:var(--green)}
+.hero p{color:var(--muted);max-width:650px;margin:15px auto 25px;line-height:1.8}
+section{padding:60px 20px}
+h2{text-align:center;font-size:35px;margin-bottom:30px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;max-width:1100px;margin:auto}
+.card,.box{background:var(--panel);padding:25px;border-radius:13px;border:1px solid #26344a}
+.card h3{margin:15px 0}
+.price{font-size:32px;color:var(--green);font-weight:bold;margin:15px 0}
+.card p,.box p{color:var(--muted);line-height:1.8}
+.card ul{padding:15px 20px;color:#d6deeb;line-height:2}
+.card button{width:100%;margin-top:15px}
+.dashboard{display:none;min-height:100vh;background:#080e19}
+.dashboard.active{display:block}
+.dashhead{padding:25px;background:#101b2d;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.dashbody{display:grid;grid-template-columns:220px 1fr;gap:20px;max-width:1250px;margin:auto;padding:20px}
+.sidebar,.content{background:var(--panel);border-radius:12px;padding:20px}
+.sidebar button{display:block;width:100%;margin:7px 0;text-align:left;background:transparent;color:white;border:1px solid #26344a}
+.sidebar button.active{background:var(--green);color:#10170b}
+.tab{display:none}
+.tab.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin-bottom:20px}
+.stat{background:#1a2940;padding:20px;border-radius:10px}
+.stat small{color:var(--muted)}
+.stat h2{font-size:25px;color:var(--green);margin:10px 0;text-align:left}
+table{width:100%;border-collapse:collapse;margin-top:15px;min-width:500px}
+th,td{padding:13px;text-align:left;border-bottom:1px solid #304057;font-size:13px}
+th{color:var(--green)}
+.tablewrap{overflow-x:auto}
+input,select{width:100%;padding:13px;margin:8px 0 15px;background:#091321;border:1px solid #34445d;border-radius:7px;color:white}
+label{color:var(--muted);font-size:13px}
+.form{max-width:500px}
+.login{max-width:430px;margin:60px auto;padding:30px;background:var(--panel);border-radius:13px}
+.notice{background:#292719;border:1px solid #76643a;padding:15px;margin:20px;border-radius:8px;color:#f4d99b;font-size:12px;line-height:1.6}
+footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #26344a}
+@media(max-width:700px){
+.hero h1{font-size:38px}
+.dashbody{grid-template-columns:1fr}
+.sidebar{display:flex;overflow-x:auto;gap:5px}
+.sidebar button{min-width:max-content;width:auto}
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+<nav>
+<div class="logo">APEXEDGE FUNDING</div>
+<button onclick="openLogin()">Trader Portal</button>
+</nav>
+</header>
+
+<main id="website">
+
+<div class="hero">
+<h1>TRADE YOUR STRATEGY.<br><span>PROVE YOUR EDGE.</span></h1>
+<p>
+Take on trading evaluations, demonstrate your risk management
+and work towards eligibility for a simulated funded trading account.
+</p>
+<a href="#programs" class="btn">Explore Accounts</a>
+</div>
+
+<section id="programs">
+<h2>Choose Your Trading Program</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Essential Account</h3>
+<div class="price">$10,000</div>
+<p>For developing traders.</p>
+<ul>
+<li>Evaluation program</li>
+<li>Example target: 8%</li>
+<li>Example daily loss: 5%</li>
+<li>Example maximum loss: 10%</li>
+</ul>
+<button onclick="selectPlan('Essential $10,000')">Choose Account</button>
+</div>
+
+<div class="card">
+<h3>Advanced Account</h3>
+<div class="price">$25,000</div>
+<p>For disciplined traders.</p>
+<ul>
+<li>Evaluation program</li>
+<li>Example target: 8%</li>
+<li>Example daily loss: 5%</li>
+<li>Example maximum loss: 10%</li>
+</ul>
+<button onclick="selectPlan('Advanced $25,000')">Choose Account</button>
+</div>
+
+<div class="card">
+<h3>Professional Account</h3>
+<div class="price">$50,000</div>
+<p>For experienced traders.</p>
+<ul>
+<li>Evaluation program</li>
+<li>Example target: 8%</li>
+<li>Example daily loss: 5%</li>
+<li>Example maximum loss: 10%</li>
+</ul>
+<button onclick="selectPlan('Professional $50,000')">Choose Account</button>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>How It Works</h2>
+<div class="cards">
+<div class="card">
+<h3>01. Choose</h3>
+<p>Select your preferred evaluation account.</p>
+</div>
+<div class="card">
+<h3>02. Trade</h3>
+<p>Demonstrate consistency and responsible risk management.</p>
+</div>
+<div class="card">
+<h3>03. Get Reviewed</h3>
+<p>Eligible traders may proceed to the next stage under the published terms.</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Why APEXEDGE FUNDING?</h2>
+<div class="cards">
+<div class="card"><h3>Risk Management</h3><p>Clear trading rules and drawdown limits.</p></div>
+<div class="card"><h3>Transparency</h3><p>Understand the evaluation requirements.</p></div>
+<div class="card"><h3>Trader Support</h3><p>A structured environment for traders.</p></div>
+</div>
+</section>
+
+</main>
+
+<!-- DASHBOARD -->
+
+<div class="dashboard" id="dashboard">
+
+<div class="dashhead">
+<div>
+<h2 style="text-align:left;color:var(--green)">APEXEDGE FUNDING</h2>
+<p id="roleTitle">Trader Dashboard</p>
+</div>
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="notice">
+DEMO VERSION: All balances, accounts, trades, user records and payout information below are illustrative. No real trading, payments or payouts are connected.
+</div>
+
+<div class="login" id="login">
+<h2>Portal Login</h2>
+<label>Email Address</label>
+<input id="email" type="email" placeholder="trader@example.com">
+
+<label>Select Dashboard</label>
+<select id="role">
+<option value="trader">Trader Dashboard</option>
+<option value="admin">Admin Dashboard</option>
+</select>
+
+<button style="width:100%" onclick="login()">Enter Dashboard</button>
+<p style="color:var(--muted);font-size:12px;margin-top:15px">
+Demo access only. No password is required.
+</p>
+</div>
+
+<div class="dashbody" id="dashbody" style="display:none">
+
+<div class="sidebar">
+
+<button class="active" onclick="tab('overview',this)">Overview</button>
+<button onclick="tab('accounts',this)">My Accounts</button>
+<button onclick="tab('trades',this)">Trading History</button>
+<button onclick="tab('payouts',this)">Payout Requests</button>
+<button onclick="tab('profile',this)">My Profile</button>
+
+<div id="adminMenu" style="display:none">
+<button onclick="tab('users',this)">User Management</button>
+<button onclick="tab('manage',this)">Account Management</button>
+<button onclick="tab('reviews',this)">Payout Reviews</button>
+<button onclick="tab('settings',this)">Platform Settings</button>
+</div>
+
+</div>
+
+<div class="content">
+
+<!-- OVERVIEW -->
+
+<div class="tab active" id="overview">
+<h2 style="text-align:left">Dashboard Overview</h2>
+
+<div class="stats">
+<div class="stat"><small>Account Balance</small><h2>$25,000</h2></div>
+<div class="stat"><small>Equity</small><h2>$25,420</h2></div>
+<div class="stat"><small>Profit</small><h2>$420</h2></div>
+<div class="stat"><small>Progress</small><h2>42%</h2></div>
+</div>
+
+<div class="box">
+<h3>Account Performance</h3>
+<p>Illustrative account performance dashboard.</p>
+<div style="height:100px;background:linear-gradient(160deg,#263d50,#111d30);margin-top:20px;border-radius:10px"></div>
+</div>
+</div>
+
+<!-- ACCOUNTS -->
+
+<div class="tab" id="accounts">
+<h2>My Accounts</h2>
+<div class="box tablewrap">
+<table>
+<tr><th>Account ID</th><th>Program</th><th>Balance</th><th>Status</th></tr>
+<tr><td>AX25001</td><td>Advanced</td><td>$25,000</td><td>Demo Active</td></tr>
+<tr><td>AX10002</td><td>Essential</td><td>$10,000</td><td>Demo Active</td></tr>
+</table>
+</div>
+</div>
+
+<!-- TRADING HISTORY -->
+
+<div class="tab" id="trades">
+<h2>Trading History</h2>
+<div class="box tablewrap">
+<table>
+<tr><th>Date</th><th>Symbol</th><th>Type</th><th>Lot</th><th>Profit</th></tr>
+<tr><td>29 Oct</td><td>XAUUSD</td><td>BUY</td><td>0.10</td><td>+$120</td></tr>
+<tr><td>28 Oct</td><td>EURUSD</td><td>SELL</td><td>0.20</td><td>-$35</td></tr>
+<tr><td>27 Oct</td><td>GBPUSD</td><td>BUY</td><td>0.10</td><td>+$65</td></tr>
+</table>
+</div>
+</div>
+
+<!-- PAYOUTS -->
+
+<div class="tab" id="payouts">
+<h2>Payout Requests</h2>
+<div class="box form">
+<label>Account</label>
+<select><option>AX25001</option></select>
+
+<label>Amount (USD)</label>
+<input type="number" id="amount" placeholder="Enter amount">
+
+<label>Payment Method</label>
+<select>
+<option>Bank Transfer</option>
+<option>Mobile Money</option>
+<option>Other</option>
+</select>
+
+<button onclick="requestPayout()">Preview Request</button>
+<p id="payoutMessage" style="margin-top:15px;color:var(--green)"></p>
+</div>
+</div>
+
+<!-- PROFILE -->
+
+<div class="tab" id="profile">
+<h2>My Profile</h2>
+<div class="box">
+<p>Email: <span id="profileEmail"></span></p>
+<p>Account Type: Demo Trader</p>
+<p>Company: APEXEDGE FUNDING</p>
+</div>
+</div>
+
+<!-- ADMIN USERS -->
+
+<div class="tab" id="users">
+<h2>User Management</h2>
+<div class="stats">
+<div class="stat"><small>Total Users</small><h2>128</h2></div>
+<div class="stat"><small>Active Accounts</small><h2>74</h2></div>
+<div class="stat"><small>Pending Reviews</small><h2>12</h2></div>
+</div>
+<div class="box tablewrap">
+<table>
+<tr><th>User</th><th>Email</th><th>Status</th></tr>
+<tr><td>Demo Trader 01</td><td>user01@example.test</td><td>Pending</td></tr>
+<tr><td>Demo Trader 02</td><td>user02@example.test</td><td>Active Demo</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ACCOUNT MANAGEMENT -->
+
+<div class="tab" id="manage">
+<h2>Account Management</h2>
+<div class="box tablewrap">
+<table>
+<tr><th>Account</th><th>Trader</th><th>Size</th><th>Status</th></tr>
+<tr><td>AX25001</td><td>Trader 01</td><td>$25,000</td><td>Active Demo</td></tr>
+<tr><td>AX10002</td><td>Trader 02</td><td>$10,000</td><td>Active Demo</td></tr>
+</table>
+</div>
+</div>
+
+<!-- PAYOUT REVIEWS -->
+
+<div class="tab" id="reviews">
+<h2>Payout Review</h2>
+<div class="box tablewrap">
+<table>
+<tr><th>Request ID</th><th>Trader</th><th>Amount</th><th>Status</th></tr>
+<tr><td>PO1007</td><td>Trader 01</td><td>$250</td><td>Sample Pending</td></tr>
+<tr><td>PO1006</td><td>Trader 02</td><td>$150</td><td>Sample</td></tr>
+</table>
+</div>
+</div>
+
+<!-- SETTINGS -->
+
+<div class="tab" id="settings">
+<h2>Platform Settings</h2>
+<div class="box">
+<p>Company: APEXEDGE FUNDING</p>
+<p>Currency: USD</p>
+<p>Environment: Demo</p>
+<p>Trading Platform: Not Connected</p>
+<p>Payment Gateway: Not Connected</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<footer id="footer">
+<h3 style="color:var(--green)">APEXEDGE FUNDING</h3>
+<p>Trade with discipline. Manage risk. Build consistency.</p>
+<p style="margin-top:15px">© 2026 APEXEDGE FUNDING</p>
+<p style="margin-top:15px;font-size:11px">
+Trading involves substantial risk. Simulated account balances are not real funds.
+No returns, funding or payouts are guaranteed. This is a demonstration website.
+</p>
+</footer>
+
+<script>
+
+function openLogin(){
+document.getElementById("website").style.display="none";
+document.getElementById("header").style.display="none";
+document.getElementById("footer").style.display="none";
+document.getElementById("dashboard").classList.add("active");
+window.scrollTo(0,0);
+}
+
+function login(){
+let email=document.getElementById("email").value;
+let role=document.getElementById("role").value;
+
+if(!email.includes("@")){
+alert("Enter a valid demo email");
+return;
+}
+
+document.getElementById("login").style.display="none";
+document.getElementById("dashbody").style.display="grid";
+document.getElementById("profileEmail").textContent=email;
+
+if(role==="admin"){
+document.getElementById("roleTitle").textContent="Administrator Dashboard";
+document.getElementById("adminMenu").style.display="block";
+}else{
+document.getElementById("roleTitle").textContent="Trader Dashboard";
+document.getElementById("adminMenu").style.display="none";
+}
+}
+
+function logout(){
+document.getElementById("dashboard").classList.remove("active");
+document.getElementById("website").style.display="block";
+document.getElementById("header").style.display="block";
+document.getElementById("footer").style.display="block";
+document.getElementById("login").style.display="block";
+document.getElementById("dashbody").style.display="none";
+window.scrollTo(0,0);
+}
+
+function tab(id,button){
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll(".sidebar button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+}
+
+function selectPlan(plan){
+openLogin();
+document.getElementById("role").value="trader";
+alert("Selected program: "+plan+". Registration is not yet enabled.");
+}
+
+function requestPayout(){
+let amount=document.getElementById("amount").value;
+if(!amount || amount<=0){
+alert("Enter a valid demo amount");
+return;
+}
+document.getElementById("payoutMessage").textContent=
+"Demo preview only. No payout has been submitted.";
+}
+
+</script>
+
+</body>
+  </html>
